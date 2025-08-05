@@ -14,6 +14,7 @@ Public Class FrmBooking
         NumericHelper.ProtectEmptyValue(NumStandardSeat)
 
         EnableItem(False)
+        BtnSave.Enabled = False
     End Sub
 
     ''' <summary>
@@ -49,10 +50,11 @@ Public Class FrmBooking
                 LabelCoupleTicketLeft.Text = MAX_COUPLE_SEAT - Integer.Parse(dtTicketLeft.Rows(0).Item("COUPLE_SEAT_TICKET"))
                 LabelStandardTicketLeft.Text = MAX_STANDARD_SEAT - Integer.Parse(dtTicketLeft.Rows(0).Item("STANDART_SEAT_TICKET"))
             End With
-
+            BtnSave.Enabled = True
         Else
             EnableItem(False)
             TxtPerformanceTitle.Text = String.Empty
+            BtnSave.Enabled = False
         End If
     End Sub
 

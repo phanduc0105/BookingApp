@@ -19,6 +19,7 @@ Public Class FrmSeatAssignment
         NumericHelper.ProtectEmptyValue(NumBookingId)
 
         AddButtonSeatMap()
+        BtnSave.Enabled = False
     End Sub
 
     ''' <summary>
@@ -173,6 +174,7 @@ Public Class FrmSeatAssignment
             LabelTicketVip.Text = dt.Rows(0).Item("vip_seat_ticket")
             LabelTicketCouple.Text = dt.Rows(0).Item("couple_seat_ticket")
             LabelTicketStandard.Text = dt.Rows(0).Item("standart_seat_ticket")
+            BtnSave.Enabled = True
         Else
             NumPerformanceId.Value = 0
             LabelTitle.Text = String.Empty
@@ -182,6 +184,7 @@ Public Class FrmSeatAssignment
             LabelTicketVip.Text = String.Empty
             LabelTicketCouple.Text = String.Empty
             LabelTicketStandard.Text = String.Empty
+            BtnSave.Enabled = False
             If NumBookingId.Value > 0 Then
                 MessageBox.Show("Booking does not exist.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
@@ -348,7 +351,9 @@ Public Class FrmSeatAssignment
             Return
         End If
 
-        InsertData()
+        If InsertData() Then
+            NumBookingId_ValueChanged(Nothing, Nothing)
+        End If
     End Sub
 
     ''' <summary>
@@ -512,13 +517,15 @@ Public Class FrmSeatAssignment
     ''' Count Ticket Booking
     ''' </summary>
     Private Sub CountTicketBooking()
-        Dim countVip As Integer = SeatChoose.AsEnumerable().Count(Function(x) x.Value = PanelVip.Tag)
-        GroupBoxVip.Text = String.Format("Vip ({0}/{1})", countVip, CInt(LabelTicketVip.Text))
+        If SeatChoose.Count > 0 Then
+            Dim countVip As Integer = SeatChoose.AsEnumerable().Count(Function(x) x.Value = PanelVip.Tag)
+            GroupBoxVip.Text = String.Format("Vip ({0}/{1})", countVip, CInt(LabelTicketVip.Text))
 
-        Dim countCouple As Integer = SeatChoose.AsEnumerable().Count(Function(x) x.Value = PanelCouple.Tag)
-        GroupBoxCouple.Text = String.Format("Couple ({0}/{1})", countCouple, CInt(LabelTicketCouple.Text))
+            Dim countCouple As Integer = SeatChoose.AsEnumerable().Count(Function(x) x.Value = PanelCouple.Tag)
+            GroupBoxCouple.Text = String.Format("Couple ({0}/{1})", countCouple, CInt(LabelTicketCouple.Text))
 
-        Dim countStandard As Integer = SeatChoose.AsEnumerable().Count(Function(x) x.Value = PanelStandard.Tag)
-        GroupBoxStandard.Text = String.Format("Standard ({0}/{1})", countStandard, CInt(LabelTicketStandard.Text))
+            Dim countStandard As Integer = SeatChoose.AsEnumerable().Count(Function(x) x.Value = PanelStandard.Tag)
+            GroupBoxStandard.Text = String.Format("Standard ({0}/{1})", countStandard, CInt(LabelTicketStandard.Text))
+        End If
     End Sub
 End Class

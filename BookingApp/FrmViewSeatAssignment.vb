@@ -320,7 +320,7 @@ Public Class FrmViewSeatAssignment
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub BtnBooking_Click(sender As Object, e As EventArgs) Handles BtnPerformance.Click
+    Private Sub BtnPerformance_Click(sender As Object, e As EventArgs) Handles BtnPerformance.Click
         Dim frm As New FrmPerformanceMaster(ScreenMode.Search)
         If frm.ShowDialog = DialogResult.OK Then
             NumPerformanceId.Value = frm.PerformanceId
