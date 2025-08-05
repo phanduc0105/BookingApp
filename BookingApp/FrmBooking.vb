@@ -233,24 +233,24 @@ Public Class FrmBooking
 
             'The number of tickets booked exceeds the remaining available tickets.
             Dim dtTicketLeft As DataTable = GetTicketLeft()
-            If dtTicketLeft.Rows(0).Item("VIP_SEAT_TICKET") > 0 AndAlso NumVIPSeat.Value > dtTicketLeft.Rows(0).Item("VIP_SEAT_TICKET") Then
+            If NumVIPSeat.Value + dtTicketLeft.Rows(0).Item("VIP_SEAT_TICKET") > MAX_VIP_SEAT Then
                 MessageBox.Show("Fewer VIP tickets remain than you requested." & vbNewLine & "Kindly verify and update your order to proceed.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 NumVIPSeat.Focus()
-                LabelVipTicketLeft.Text = dtTicketLeft.Rows(0).Item("VIP_SEAT_TICKET")
+                GetTicketLeft(dtTicketLeft)
                 Return False
             End If
 
-            If dtTicketLeft.Rows(0).Item("COUPLE_SEAT_TICKET") > 0 AndAlso NumCoupleSeat.Value > dtTicketLeft.Rows(0).Item("COUPLE_SEAT_TICKET") Then
+            If NumCoupleSeat.Value + dtTicketLeft.Rows(0).Item("COUPLE_SEAT_TICKET") > MAX_COUPLE_SEAT Then
                 MessageBox.Show("Fewer Couple tickets remain than you requested." & vbNewLine & "Kindly verify and update your order to proceed.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                NumVIPSeat.Focus()
-                NumCoupleSeat.Text = dtTicketLeft.Rows(0).Item("COUPLE_SEAT_TICKET")
+                NumCoupleSeat.Focus()
+                GetTicketLeft(dtTicketLeft)
                 Return False
             End If
 
-            If dtTicketLeft.Rows(0).Item("STANDART_SEAT_TICKET") > 0 AndAlso NumStandardSeat.Value > dtTicketLeft.Rows(0).Item("STANDART_SEAT_TICKET") Then
+            If NumStandardSeat.Value + dtTicketLeft.Rows(0).Item("STANDART_SEAT_TICKET") > MAX_STANDARD_SEAT Then
                 MessageBox.Show("Fewer Standard tickets remain than you requested." & vbNewLine & "Kindly verify and update your order to proceed.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 NumStandardSeat.Focus()
-                LabelStandardTicketLeft.Text = dtTicketLeft.Rows(0).Item("STANDART_SEAT_TICKET")
+                GetTicketLeft(dtTicketLeft)
                 Return False
             End If
 
@@ -261,13 +261,13 @@ Public Class FrmBooking
                 Decimal.Parse(dtCheckPrice.Rows(0).Item("amount_standard")) <> Decimal.Parse(LabelStandardTicketPrice.Text) Then
                 MessageBox.Show("Ticket pricing has been updated. Kindly review and confirm before booking.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
-                LabelVipTicketPrice.Text = dtTicketLeft.Rows(0).Item("amount_vip").ToString("#,##0")
+                LabelVipTicketPrice.Text = CDec(dtCheckPrice.Rows(0).Item("amount_vip")).ToString("#,##0")
                 LabelVipTicketAmount.Text = (Decimal.Parse(dtCheckPrice.Rows(0).Item("amount_vip")) * NumVIPSeat.Value).ToString("#,##0")
 
-                LabelCoupleTicketPrice.Text = dtTicketLeft.Rows(0).Item("amount_couple").ToString("#,##0")
+                LabelCoupleTicketPrice.Text = CDec(dtCheckPrice.Rows(0).Item("amount_couple")).ToString("#,##0")
                 LabelCoupleTicketAmount.Text = (Decimal.Parse(dtCheckPrice.Rows(0).Item("amount_couple")) * NumCoupleSeat.Value).ToString("#,##0")
 
-                LabelStandardTicketPrice.Text = dtTicketLeft.Rows(0).Item("amount_standard").ToString("#,##0")
+                LabelStandardTicketPrice.Text = CDec(dtCheckPrice.Rows(0).Item("amount_standard")).ToString("#,##0")
                 LabelStandardTicketAmount.Text = (Decimal.Parse(dtCheckPrice.Rows(0).Item("amount_standard")) * NumStandardSeat.Value).ToString("#,##0")
 
                 SumTotalAmount()
@@ -307,5 +307,15 @@ Public Class FrmBooking
     ''' </summary>
     Private Sub SumTotalAmount()
         LabelTotalAmount.Text = (Decimal.Parse(LabelVipTicketAmount.Text) + Decimal.Parse(LabelCoupleTicketAmount.Text) + Decimal.Parse(LabelStandardTicketAmount.Text)).ToString("#,##0")
+    End Sub
+
+    ''' <summary>
+    ''' Get Ticket Left
+    ''' </summary>
+    ''' <param name="dtTicketLeft"></param>
+    Private Sub GetTicketLeft(dtTicketLeft As DataTable)
+        LabelVipTicketLeft.Text = MAX_VIP_SEAT - dtTicketLeft.Rows(0).Item("VIP_SEAT_TICKET")
+        LabelCoupleTicketLeft.Text = MAX_COUPLE_SEAT - dtTicketLeft.Rows(0).Item("COUPLE_SEAT_TICKET")
+        LabelStandardTicketLeft.Text = MAX_STANDARD_SEAT - dtTicketLeft.Rows(0).Item("STANDART_SEAT_TICKET")
     End Sub
 End Class

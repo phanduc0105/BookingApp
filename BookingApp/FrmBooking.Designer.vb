@@ -33,11 +33,13 @@ Partial Class FrmBooking
         Me.Label4 = New System.Windows.Forms.Label()
         Me.LabelVipTicketPrice = New System.Windows.Forms.Label()
         Me.GroupBoxVIP = New System.Windows.Forms.GroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.LabelVipTicketAmount = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.LabelVipTicketLeft = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBoxCouple = New System.Windows.Forms.GroupBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.LabelCoupleTicketAmount = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.LabelCoupleTicketLeft = New System.Windows.Forms.Label()
@@ -47,6 +49,7 @@ Partial Class FrmBooking
         Me.NumCoupleSeat = New System.Windows.Forms.NumericUpDown()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.GroupBoxStandard = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.LabelStandardTicketAmount = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.LabelStandardTicketLeft = New System.Windows.Forms.Label()
@@ -58,9 +61,6 @@ Partial Class FrmBooking
         Me.Label24 = New System.Windows.Forms.Label()
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.LabelTotalAmount = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.NumPerformanceId, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumVIPSeat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxVIP.SuspendLayout()
@@ -183,6 +183,15 @@ Partial Class FrmBooking
         Me.GroupBoxVIP.TabStop = False
         Me.GroupBoxVIP.Text = "VIP Seat"
         '
+        'Label5
+        '
+        Me.Label5.Location = New System.Drawing.Point(296, 16)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(38, 20)
+        Me.Label5.TabIndex = 16
+        Me.Label5.Text = "/20"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'LabelVipTicketAmount
         '
         Me.LabelVipTicketAmount.Location = New System.Drawing.Point(78, 59)
@@ -236,6 +245,15 @@ Partial Class FrmBooking
         Me.GroupBoxCouple.TabIndex = 13
         Me.GroupBoxCouple.TabStop = False
         Me.GroupBoxCouple.Text = "Couple Seat"
+        '
+        'Label6
+        '
+        Me.Label6.Location = New System.Drawing.Point(296, 16)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(38, 20)
+        Me.Label6.TabIndex = 17
+        Me.Label6.Text = "/20"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LabelCoupleTicketAmount
         '
@@ -327,6 +345,15 @@ Partial Class FrmBooking
         Me.GroupBoxStandard.TabIndex = 14
         Me.GroupBoxStandard.TabStop = False
         Me.GroupBoxStandard.Text = "Standard Seat"
+        '
+        'Label8
+        '
+        Me.Label8.Location = New System.Drawing.Point(296, 16)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(38, 20)
+        Me.Label8.TabIndex = 17
+        Me.Label8.Text = "/60"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LabelStandardTicketAmount
         '
@@ -430,33 +457,6 @@ Partial Class FrmBooking
         Me.LabelTotalAmount.TabIndex = 18
         Me.LabelTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label5
-        '
-        Me.Label5.Location = New System.Drawing.Point(296, 16)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(38, 20)
-        Me.Label5.TabIndex = 16
-        Me.Label5.Text = "/20"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label6
-        '
-        Me.Label6.Location = New System.Drawing.Point(296, 16)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(38, 20)
-        Me.Label6.TabIndex = 17
-        Me.Label6.Text = "/20"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label8
-        '
-        Me.Label8.Location = New System.Drawing.Point(296, 16)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(38, 20)
-        Me.Label8.TabIndex = 17
-        Me.Label8.Text = "/60"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'FrmBooking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -474,6 +474,7 @@ Partial Class FrmBooking
         Me.Controls.Add(Me.NumPerformanceId)
         Me.Controls.Add(Me.TxtPerformanceTitle)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "FrmBooking"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
