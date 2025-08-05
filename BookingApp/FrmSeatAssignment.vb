@@ -343,6 +343,11 @@ Public Class FrmSeatAssignment
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        If SeatChoose.Count = 0 Then
+            MessageBox.Show("Please select at least one seat.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         If Not CheckDuplicateAllSeat() Then
             Return
         End If

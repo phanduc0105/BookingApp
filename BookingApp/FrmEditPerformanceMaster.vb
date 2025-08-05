@@ -53,6 +53,7 @@ Public Class FrmEditPerformanceMaster
                 NumAmountCouple.Enabled = False
                 NumAmountStandard.Enabled = False
                 BtnSave.Enabled = False
+                MessageBox.Show("This performance has already taken place and cannot be updated.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
         End If
     End Sub
